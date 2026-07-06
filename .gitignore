@@ -1,0 +1,76 @@
+# ==========================================
+# 1. OPENTOFU / TERRAFORM RULES
+# ==========================================
+# Match all runtime hidden directories where OpenTofu stores providers/plugins
+**/.terraform/
+**/.tofu/
+
+# Ignore local execution state files (crucial if you aren't using a remote backend like S3/MinIO)
+*.tfstate
+*.tfstate.*
+
+# Ignore crash logs if a provider hits an unhandled exception
+crash.log
+crash.*.log
+
+# Exclude sensitive variable files that store your Proxmox passwords or Rancher admin tokens
+*.tfvars
+*.tfvars.json
+
+# Ignore override files used for local machine overrides
+override.tf
+override.tf.json
+*_override.tf
+*_override.tf.json
+
+# Ignore transient lock files created during a `tofu apply` run
+.terraform.tfstate.lock.info
+
+# Ignore local execution plan outputs (e.g., if you run `tofu plan -out=dev.tfplan`)
+*.tfplan*
+
+
+# ==========================================
+# 2. ANSIBLE RULES
+# ==========================================
+# Ignore default cache and config paths generated on the control node
+.ansible/
+
+# Ignore legacy retry files generated when playbooks fail on specific hosts
+*.retry
+
+# If you vendor or download collections locally into the repository rather than globally
+ansible/collections/
+ansible/roles/rancherfederal.rke2/ # Optional: ignore if you don't want downloaded dependency code tracked
+
+# Ignore local execution logs
+ansible.log
+
+
+# ==========================================
+# 3. ENVIRONMENT & CREDENTIAL PROTECTION
+# ==========================================
+# Block general environment files containing secrets (e.g., root tokens, API keys)
+.env
+.env.*
+.secrets
+
+
+# ==========================================
+# 4. SYSTEM & DEVELOPMENT WORKSTATION
+# ==========================================
+# Fedora / Linux specific artifacts
+*~
+.fuse_hidden*
+.directory
+
+# Common IDE configuration folders
+.idea/
+.vscode/
+
+# ==========================================
+# KEEP IN VERSION CONTROL (EXCEPTIONS)
+# ==========================================
+# DO NOT ignore the dependency lock files. OpenTofu uses these to guarantee 
+# that your Proxmox/Rancher providers remain locked to exact, safe versions.
+!**.terraform.lock.hcl
