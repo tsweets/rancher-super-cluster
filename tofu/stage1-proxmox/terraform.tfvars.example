@@ -1,0 +1,14 @@
+# Example terraform.tfvars file
+# Copy this file to terraform.tfvars and fill in your values
+# This file is in .gitignore, so your secrets won't be checked in
+
+proxmox_host     = "pve2.t.s.com"
+proxmox_user     = "root@pam"
+proxmox_password = "your-proxmox-password"
+
+# Optional: Override default VM configuration
+# vm_config = [
+#   { name = "cluster-a-node-01", ip = "10.107.0.201" },
+#   { name = "cluster-a-node-02", ip = "10.107.0.202" },
+#   # ... more VMs
+# ]
